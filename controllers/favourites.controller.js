@@ -1,6 +1,8 @@
 // const favourites = require('../models/favourites');
-const db = require('../models/index');
-const Favourites = db.favourites
+// const db = require('../models/index');
+// const Favourites = db.favourites
+
+const Favourites = require('../db/FavouriteModel')
 
 exports.create = (req,res)=>{
     if (!req.body) {

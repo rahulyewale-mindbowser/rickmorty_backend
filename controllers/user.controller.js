@@ -1,7 +1,7 @@
 const bcrypt = require('bcrypt');
 
-const db =require('../models/index');
-const User= db.users
+// const db =require('../models/index');
+const User= require('../db/UserModel')
 // const User = require('../models/users')
 
 // create a new user
