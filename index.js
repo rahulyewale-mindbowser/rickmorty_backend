@@ -18,7 +18,7 @@ var corsOptions = {
 const db = require("./models/index");
 try {
   db.mongoose
-  .connect(db.url)
+  .connect("mongodb+srv://rahulyewale:Rahul664464@cluster0.xrognqu.mongodb.net/rickmorty?retryWrites=true&w=majority")
   .then(() => {
     console.log("Connected to the database!");
   })
