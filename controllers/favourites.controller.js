@@ -68,7 +68,7 @@ exports.remove=(req, res) => {
       })
       .catch(err => {
         res.status(500).send({
-          message: "Could not delete favourite with id=" + id
+          message: "Could not delete favourite with name=" + cname
         });
       });
   };

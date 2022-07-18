@@ -1,9 +1,8 @@
 const bcrypt = require('bcrypt');
-
-// const db =require('../models/index');
+const jwt= require('jsonwebtoken');
 const User= require('../db/UserModel')
-// const User = require('../models/users')
 
+require('dotenv').config();
 // create a new user
 exports.create =async(req,res)=>{
     if(!req.body){
@@ -21,13 +20,12 @@ exports.create =async(req,res)=>{
         email:req.body.email,
         password:hashedPassword
     });
-
-    user.save(user)
+ user.save(user)
     .then(data => {
-        
-        res.status(201).send({ message: "user registered successfully" })
+        res.status(201).send({ message:"user registered successfully" })
       })
       .catch(err => {
+        console.log("error");
         res.status(500).send({
           message:
           err.message || "Some error occurred while creating the user."
@@ -54,8 +52,9 @@ exports.signin = (req,res)=>{
           if (!passwordIsValid) {
             return res.status(401).send({ message: "Invalid Password!" });
           }
+          var token = jwt.sign({ id: user.id },process.env.SECRET_KEY);
           res.status(200).send({
-            message: "login successfull",id:user._id,firstname:user.firstname
+            message: "login successfully",id:user._id,firstname:user.firstname,token
           });
         });
     } catch (error) {
