@@ -4,13 +4,19 @@ require('dotenv').config();
 const app = express();
 const swaggerDocs = require('./swagger')
 const port = process.env.PORT || 8080;
-
 const morganMiddleware = require('./middlewares/morgan.middlewares')
+
+const corsOptions ={
+  origin:'*', 
+  credentials:true,            //access-control-allow-credentials:true
+  optionSuccessStatus:200,
+}
+
+app.use(cors(corsOptions))
 app.use(morganMiddleware);
 
   // parse requests of content-type - application/json
   app.use(express.json());
-  app.use(cors());
   // parse requests of content-type - application/x-www-form-urlencoded
   app.use(express.urlencoded({ extended: true }));
   
