@@ -1,5 +1,5 @@
 const express =require('express')
-// const cors = require('cors')
+const cors = require('cors')
 require('dotenv').config();
 const app = express();
 const swaggerDocs = require('./swagger')
@@ -10,7 +10,7 @@ app.use(morganMiddleware);
 
   // parse requests of content-type - application/json
   app.use(express.json());
-  
+  app.use(cors());
   // parse requests of content-type - application/x-www-form-urlencoded
   app.use(express.urlencoded({ extended: true }));
   
